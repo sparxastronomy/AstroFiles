@@ -16,7 +16,7 @@ def log(image_name):
         norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
         plt.imshow(image,cmap='gray',norm=norm)
         plt.show()
-        ch=imput("Are you happy with your choice of log_parameters(Y/N) : ")
+        ch=input("Are you happy with your choice of log_parameters(Y/N) : ")
         if ch=='Y':
             return norm(image)
             flag=0

@@ -19,6 +19,6 @@ if st_ch==1:
     blue=stretch.log(blue)
 
 #RGB image using lupton_RGB
-RGB_image = make_lupton_rgb(red, green, blue, Q=10,stretch=0.5)
+RGB_image = viz.make_lupton_rgb(red, green, blue, Q=10,stretch=0.5)
 plt.imshow(RGB_image)
 plt.show()
