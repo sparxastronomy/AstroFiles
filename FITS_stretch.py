@@ -17,7 +17,7 @@ def log(image_name):
         plt.imshow(image,cmap='gray',norm=norm)
         plt.show()
         ch=input("Are you happy with your choice of log_parameters(Y/N) : ")
-        if ch=='Y':
+        if ch=='Y' or ch=='y':
             return norm(image)
             flag=0
         else:
