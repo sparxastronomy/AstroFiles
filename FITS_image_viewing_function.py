@@ -29,7 +29,7 @@ view_ch=int(input(" Do you want to view image with supplied header(1) or you wan
 if view_ch==1:
     image_name   =input("Please enter the name of the file : ")
     header_number=input("Please input header nnumber : ")   
-    image_viewing_with_header(image_naem,header_number)
+    image_viewing_with_header(image_name,header_number)
 else:
     image_name=input("Please enter the name of the file : ")
     image_viewing(image_name)
