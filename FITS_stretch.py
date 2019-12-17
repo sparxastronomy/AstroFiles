@@ -20,9 +20,11 @@ def log(image_name):
             fig,(ax1,ax2) = plt.subplots(1, 2)
             norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
             ax1.imshow(image,cmap='gray',norm=norm)
+            ax1.title.set_text('a='+str(log_param))
             log_param=previous_parameter
             norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
             ax2.imshow(image,cmap='gray',norm=norm)
+            ax2.title.set_text('a='+str(previous_parameter))
         else:
             plt.imshow(image,cmap='gray',norm=norm)
         plt.show()
