@@ -17,7 +17,7 @@ def log(image_name):
         log_param=float(input("Enter base value for logrithmic stretch : "))
         norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
         if total_count>1:
-            fig,(ax1,ax2) = plt.subplots(1, 2)
+            (ax1,ax2) = plt.subplots(1, 2)
             norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
             ax1.imshow(image,cmap='gray',norm=norm)
             ax1.title.set_text('a='+str(log_param))
