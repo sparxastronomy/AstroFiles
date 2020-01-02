@@ -3,7 +3,7 @@ from astropy.io import fits
 import astropy.visualization as viz
 
 #logrithmic stretch and normalization
-def log(image_name):
+def log_try_and_except(image_name):
     hdul=fits.open(image_name)
     hdul.info()
     header_number=int(input("Enter Header number whose data  you want view : "))
@@ -35,4 +35,13 @@ def log(image_name):
         else:
             flag=1 
             total_count+=1
-            previous_parameter=log_param  
+            previous_parameter=log_param 
+def log(file_name):
+ try:
+     log_try_and_except(file_name)
+ except(TypeError):
+     print("INCORRECT header chosen for viewing the data !!!! ")
+     print("Please enter correct header number!!!\n")
+ except(IndexError):
+     print("HEADER UNIT not found!!!\nPlease recheck!!!\n")
+     log_try_and_except(file_name)
