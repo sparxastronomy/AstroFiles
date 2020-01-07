@@ -17,25 +17,30 @@ def log_try_and_except(image_name):
         log_param=float(input("Enter base value for logrithmic stretch : "))
         norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
         if total_count>1:
-            fig,(ax1,ax2) = plt.subplots(1, 2)
+            plt.subplot(1,2,1)
             norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
-            ax1.imshow(image,cmap='gray',norm=norm)
-            ax1.title.set_text('a='+str(log_param))
+            plt.imshow(image,cmap='gray',norm=norm)
+            plt.title('a='+str(log_param))
+            plt.grid(True)
+            plt.subplot(1,2,2)
             log_param=previous_parameter
             norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
-            ax2.imshow(image,cmap='gray',norm=norm)
-            ax2.title.set_text('a='+str(previous_parameter))
+            plt.imshow(image,cmap='gray',norm=norm)
+            plt.title('a='+str(previous_parameter))
+            plt.grid(True)
         else:
             plt.imshow(image,cmap='gray',norm=norm)
         plt.show()
         ch=input("Are you happy with your choice of log_parameters(Y/N) : ")
         if ch=='Y' or ch=='y':
-            flag=0
             return norm(image)
+            print("Image returned")
+            flag=0
         else:
             flag=1 
             total_count+=1
             previous_parameter=log_param 
+
 def log(file_name):
  try:
      log_try_and_except(file_name)
