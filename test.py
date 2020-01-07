@@ -17,25 +17,25 @@ if st_ch==1:
   
     #red file
     try:
-        red=stretch.log(red)
+        red_image=stretch.log(red)
     except(ValueError,FileNotFoundError):
         red=input("\nfile missing or empty file name !!! \nPlease re-enter file name : ")
-        red=stretch.log(red)        
+        red_image=stretch.log(red)        
  
     #green file
     try:
-        green=stretch.log(green)
+        green_image=stretch.log(green)
     except(ValueError,FileNotFoundError):
         green=input("\nfile missing or empty file name !!! \nPlease re-enter file name : ")
-        green=stretch.log(green)
+        green_image=stretch.log(green)
     #blue file
     try:
-        blue=stretch.log(blue)
+        blue_image=stretch.log(blue)
     except(ValueError,FileNotFoundError):
         blue=input("\nfile missing or empty file name !!! \nPlease re-enter file name : ")
-        blue=stretch.log(blue)
+        blue_image=stretch.log(blue)
        
     #RGB image using make_lupton_RGB
-    RGB_image = viz.make_lupton_rgb(red, green, blue, Q=10,stretch=0.5)
+    RGB_image = viz.make_lupton_rgb(red_image, green_image, blue_image, Q=10,stretch=0.5)
     plt.imshow(RGB_image)
     plt.show()

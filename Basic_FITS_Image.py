@@ -11,5 +11,5 @@ hdul.close()
 ##stretching and normalizing using LogStretch() and MinMaxInterval() like in DS9
 log_param=float(input("Enter base value for logrithmic stretch : "))
 norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch())
-plt.imshow(image,cmap='gray',norm=norm)
+plt.imshow(image,cmap='gray')
 plt.show()
