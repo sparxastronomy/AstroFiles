@@ -42,7 +42,7 @@ def log(image_name):
                 ch=input("Are you happy with your choice of log_parameters(Y/N) : ")
                 if ch=='Y' or ch=='y':
                     flag=0
-                    print("Image returned")
+                    print("Stretched Image stored temporarily!!! \n")
                     output=norm(image)
                    
                 else:
