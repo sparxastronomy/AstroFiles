@@ -18,7 +18,7 @@ def RGB_with_same_stretch():
   
         #red file
         red=stretch.log(red)
-         
+        
         #green file
         green=stretch.log(green)
         
