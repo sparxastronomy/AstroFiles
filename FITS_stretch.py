@@ -8,7 +8,11 @@ def log(image_name):
     trial=1
     while(trial!=0):  
         try:
-            hdul=fits.open(image_name)
+            try:
+                hdul=fits.open(image_name)
+            except(ValueError,FileNotFoundError):
+                image_name=input("\nfile missing or empty file name !!! \nPlease re-enter file name : ")
+                hdul=fits.open(image_name)
             hdul.info()
             header_number=int(input("Enter Header number whose data  you want view : "))
             image=hdul[header_number].data
