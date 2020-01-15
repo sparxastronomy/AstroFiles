@@ -21,22 +21,23 @@ def search_and_list():
                 SystemExit()
         choice=True
     #input through RA and DEC
-    search_region=input(" Enter Query region : ")
+    if query_choice==1:
+        search_region=input(" Enter search region : ")
+    else:
+        search_target=input(" Enter search target : ")
     search_radius=input(" Enter search radius : ")
-    print("Available missions : ", Observations.list_missions(),"\n")
-    mission_ID=input(" Enter mission specific constraint"+Observations.list_missions()+" otherwise leave empty : ")
-    dataproduct_type=input(" Enter Product type [IMAGE, SPECTRUM, SED, TIMESERIES, VISIBILITY, EVENTLIST, CUBE, CATALOG, ENGINEERING] otherwise leave empty : ")
-    instrument_name=input(" Enter Instrument name[E.g. WFPC2/WFC, UVOT, STIS/CCD] otherwise leave empty : ")
-    filters=input(" Enter filter name[E.g F469N, NUV, FUV] otherwise leave empty : ")
-    max_wavelength=input(" Enter maximum wavelength(in nm) otherwise leave empty : ")
-    min_wavelength=input(" Enter minimum wavelength(in nm) otherwise leave empty : ")
-    proposal_ID=input(" Enter proposal ID otherwise leave empty : ")
-    intentType=input(" Enter intent[science, calibration] otherwise leave empty : ")
-    obs_ID=input(" Enter observation ID otherwise leave empty : ")
-    calib_level=input("Enter callibration level( \n 0 = raw, 1 = uncalibrated, 2 = calibrated,\n 3 = science product, 4 = contributed science product) otherwise leave empty : ") 
-    ObsBycriteria = Observations.query_criteria(obs_collection=mission_ID,objectname=search_region, radius=search_radius)
-    print("Number of results:",len(ObsBycriteria))
-    print(ObsBycriteria[:10])
+    
+    mission_ID=input(" Enter mission specific constraint"+str(Observations.list_missions())+" otherwise leave empty : ")
+        
+    if query_choice==1:
+        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_region , radius=search_radius)
+    else:
+        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_region , radius=search_radius)
+    
+    #query output
+    
+    print("Number of results:",len(ObsByCriteria))
+    print(ObsByCriteria[:10])
 
 search_and_list()
 #advance serching and downloading
