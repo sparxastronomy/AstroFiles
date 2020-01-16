@@ -32,12 +32,22 @@ def search_and_list():
     if query_choice==1:
         ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_region , radius=search_radius)
     else:
-        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_region , radius=search_radius)
+        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_target , radius=search_radius)
     
     #query output
     
     print("Number of results:",len(ObsByCriteria))
-    print(ObsByCriteria[:10])
+    print(ObsByCriteria[:15])
 
+    #dataproduct query
+    print("\n~~~~ Viewing dataproducts query ~~~~")
+    dataProducts = Observations.get_product_list(ObsByCriteria[20:22])
+    print("Number of results:",len(dataProducts))
+    dataProducts.show_in_notebook(display_length=5)
+
+    #filtering data products:
+    productType=input("  Enter valid product type \n [SCIENCE, CALIBRATION, BIAS, DARK, FLAT, WAVECAL, NOISE, WEIGHT, AUXILIARY, INFO, CATALOG, LIGHTCURVE, TARGETPIXELS, PREVIEW, PREVIEW_FULL, PREVIEW_1D, PREVIEW_2D, THUMBNAIL, PREVIEW_THUMB, MINIMUM_SET, RECOMMENDED_SET, COMPLETE_SET, WEBSERVICE]\n     : ")
+    Filtered_Products = Observations.filter_products(dataProducts,productType= productType,mrp_only=False)
+    Filtered_Products.show_in_notebook(display_l2ength=5)
 search_and_list()
 #advance serching and downloading
