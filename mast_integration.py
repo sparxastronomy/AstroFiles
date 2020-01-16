@@ -49,5 +49,6 @@ def search_and_list():
     productType=input("  Enter valid product type \n [SCIENCE, CALIBRATION, BIAS, DARK, FLAT, WAVECAL, NOISE, WEIGHT, AUXILIARY, INFO, CATALOG, LIGHTCURVE, TARGETPIXELS, PREVIEW, PREVIEW_FULL, PREVIEW_1D, PREVIEW_2D, THUMBNAIL, PREVIEW_THUMB, MINIMUM_SET, RECOMMENDED_SET, COMPLETE_SET, WEBSERVICE]\n     : ")
     Filtered_Products = Observations.filter_products(data_products_by_id,productType= productType,mrp_only=False)
     print(Filtered_Products)
+
 search_and_list()
 #advance serching and downloading
