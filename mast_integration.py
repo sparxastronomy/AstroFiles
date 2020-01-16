@@ -32,7 +32,7 @@ def search_and_list():
     if query_choice==1:
         ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_region , radius=search_radius)
     else:
-        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_target , radius=search_radius)
+        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_target=search_target , radius=search_radius)
     
     #query output
     
