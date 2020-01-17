@@ -27,17 +27,28 @@ def search_and_list():
         search_target=input(" Enter search target : ")
     search_radius=input(" Enter search radius : ")
     
-    mission_ID=input(" Enter mission specific constraint"+str(Observations.list_missions())+" otherwise leave empty : ")
+    mission_ID=input(" Enter mission specific constraint\n"+str(Observations.list_missions())+"\n otherwise leave empty : ")
         
     if query_choice==1:
         ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_region , radius=search_radius)
     else:
-        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , object_region=search_region , radius=search_radius)
+        ObsByCriteria = Observations.query_criteria(obs_collection=mission_ID , objectname=search_target , radius=search_radius)
     
     #query output
     
     print("Number of results:",len(ObsByCriteria))
-    print(ObsByCriteria[:10])
+    print(ObsByCriteria[:15])
+
+    #dataproduct query
+    print("\n~~~~ Viewing dataproducts query ~~~~")
+    obsids = ObsByCriteria[0:2]['obsid']
+    data_products_by_id = Observations.get_product_list(obsids)
+    print(data_products_by_id)
+
+    #filtering data products:
+    productType=input("  Enter valid product type \n [SCIENCE, CALIBRATION, BIAS, DARK, FLAT, WAVECAL, NOISE, WEIGHT, AUXILIARY, INFO, CATALOG, LIGHTCURVE, TARGETPIXELS, PREVIEW, PREVIEW_FULL, PREVIEW_1D, PREVIEW_2D, THUMBNAIL, PREVIEW_THUMB, MINIMUM_SET, RECOMMENDED_SET, COMPLETE_SET, WEBSERVICE]\n     : ")
+    Filtered_Products = Observations.filter_products(data_products_by_id,productType= productType,mrp_only=False)
+    print(Filtered_Products)
 
 search_and_list()
 #advance serching and downloading
