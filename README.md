@@ -18,6 +18,4 @@ Image alignment is still not implemented as image alignment is quick and simple 
 
 **MAST** integration is still in progress, if you want to try load [mast_integration](/mast_integration.py) 
 
-
-
 Till now no ML amd AI and no speech synthesis is used as basic scripting is not complete yet.
