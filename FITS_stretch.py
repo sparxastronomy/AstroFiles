@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from astropy.io import fits
 import astropy.visualization as viz
+import numpy as np
 
 output=[]
 #logrithmic stretch and normalization
@@ -17,22 +18,24 @@ def log(image_name):
             header_number=int(input("Enter Header number whose data  you want view : "))
             image=hdul[header_number].data
             hdul.close()
+            #printing stats about the data
+            print("\n"," Minimum Value = ",np.min(image),"\t Maximum Value = ",np.max(image),"\t Meadian Value = ",np.median(image))
             flag=1
             total_count=1
             previous_parameter=0
             while(flag!= 0):
                 ##stretching and normalizing using LogStretch() and MinMaxInterval() like in DS9
                 log_param=float(input("Enter base value for logrithmic stretch : "))
-                norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
+                norm=viz.ImageNormalize(image,vmin=((np.median(image))**2-abs(np.min(image))),vmax=50,stretch=viz.LogStretch(log_param))
                 if total_count>1:
                     plt.subplot(1,2,1)
-                    norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
+                    norm=viz.ImageNormalize(image,vmin=((np.median(image))**2-abs(np.min(image))),vmax=50,stretch=viz.LogStretch(log_param))
                     plt.imshow(image,cmap='gray',norm=norm)
                     plt.title('a='+str(log_param))
                     plt.grid(True)
                     plt.subplot(1,2,2)
                     log_param=previous_parameter
-                    norm=viz.ImageNormalize(image,interval=viz.MinMaxInterval(),stretch=viz.LogStretch(log_param))
+                    norm=viz.ImageNormalize(image,vmin=((np.median(image))**2-abs(np.min(image))),vmax=50,stretch=viz.LogStretch(log_param))
                     plt.imshow(image,cmap='gray',norm=norm)
                     plt.title('a='+str(previous_parameter))
                     plt.grid(True)
